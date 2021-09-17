@@ -1,5 +1,7 @@
 # 程序启动脚本
-pip3 install -r requirements.txt
-export WORK_DIR=`pwd`
+$WORK_DIR=`pwd`
+$logfile=$WORK_DIR/log/log_start_sh.txt
+cd ~ && source .bashrc && cd $WORK_DIR
 export PYTHONPATH="${PYTHONPATH}:$WORK_DIR"
-nohup python3 $WORK_DIR/src/main.py > ./log.txt 2>&1 &
+nohup pip3 install -r $WORK_DIR/requirements.txt > $logfile 2>&1 &
+nohup python3 $WORK_DIR/src/main.py > $logfile 2>&1 &

@@ -1,5 +1,5 @@
 from .security import Secret
-from src.helpers.log import *
+from src.helpers import log_i
 
 
 def test():
