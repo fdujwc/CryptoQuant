@@ -2,6 +2,7 @@
 # 程序启动脚本
 WORK_DIR=`pwd`
 LOG_DIR=$WORK_DIR/log
+rm -r $LOG_DIR
 mkdir $LOG_DIR
 logfile=$LOG_DIR/log_start_sh.txt
 cd ~ && source .bashrc && cd $WORK_DIR
