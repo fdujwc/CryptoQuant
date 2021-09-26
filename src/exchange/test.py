@@ -1,4 +1,7 @@
-import src.exchange.huobi as huobi
+"""
+exchange test
+"""
+from src.exchange import huobi
 
 
 def test():

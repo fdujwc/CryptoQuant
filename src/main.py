@@ -1,12 +1,8 @@
 """
 程序入口
 """
-import src.exchange as exchange
-
-
-def test():
-    exchange.test()
+from src.manager import manager
 
 
 if __name__ == "__main__":
-    test()
+    manager()

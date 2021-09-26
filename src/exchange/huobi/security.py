@@ -1,15 +1,50 @@
 """
-从vps环境变量中读取access key，secret等
+安全相关函数：请求签名，报文验签
 """
-from os import environ
+from .config import Secret, Config
+from src.helpers import calc_hashmac
+from time import time
 
 
-class Secret:
-    # 读取操作access key，用于发送读取请求
-    READ_ACCESS = environ["READ_ACCESS"]
-    # 读取操作secret，用于验证交易所返回报文的签名
-    READ_SECRET = environ["READ_SECRET"]
-    # 交易操作access key，用于发送交易请求
-    TRADE_ACCESS = environ["TRADE_ACCESS"]
-    # 交易操作secret，用于验证交易所返回报文的签名
-    TRADE_SECRET = environ["TRADE_SECRET"]
+def sign_request(http_method, host, api, access_key, args=None):
+    """
+    对请求进行签名
+    :param http_method: 请求方法：POST/GET，未来考虑兼容WebSocket
+    :param host: api host域名地址
+    :param api: api路由
+    :param access_key: access key
+    :param args: GET请求中可能有的更多参数
+    :return: 返回可供requests库直接请求的附带签名的url
+    """
+    # request_str: 要被签名的字符串
+    request_str = \
+        f"{http_method}\n" + \
+        f"{host}\n" + \
+        f"{api}\n"
+    # 基础请求参数
+    request_args = {
+        "accessKeyId": access_key,
+        "signatureMethod": Secret.SIGN_METHOD,
+        "signatureVersion": Secret.SIGN_VERSION,
+        "timestamp": get_time_stamp()
+    }
+    # GET请求可能有的额外请求参数
+    if args is not None:
+        request_args.update(args)
+    request_args_str = ""
+    # 对所有请求参数进行排序拼接
+    for key in sorted(request_args.keys()):
+        request_args_str += f"{key}={args[key]}&"
+    # 去掉末尾的&
+    request_args_str = request_args_str[:-1]
+    # 拼接形成最终的要被签名的字符串
+    request_str += request_args_str
+    # 签名
+    signature = calc_hashmac(request_str, Secret.SIGN_METHOD)
+    # 拼接附带签名的url
+    signed_request_str = f"https://{host}{api}?{request_args_str}&signature={signature}"
+    return signed_request_str
+
+
+def get_time_stamp():
+    return 1

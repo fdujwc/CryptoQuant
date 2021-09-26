@@ -1,4 +1,7 @@
-from .security import Secret
+"""
+huobi test
+"""
+from .config import Secret
 from src.helpers import log_i
 
 
