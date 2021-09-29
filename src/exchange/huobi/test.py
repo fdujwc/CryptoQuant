@@ -2,11 +2,11 @@
 huobi test
 """
 from .config import Secret
-from src.helpers import log_i
+from src.helpers import log
 
 
 def test():
-    log_i(Secret.READ_ACCESS)
-    log_i(Secret.READ_SECRET)
-    log_i(Secret.TRADE_ACCESS)
-    log_i(Secret.TRADE_SECRET)
+    log.i(Secret.READ_ACCESS)
+    log.i(Secret.READ_SECRET)
+    log.i(Secret.TRADE_ACCESS)
+    log.i(Secret.TRADE_SECRET)
