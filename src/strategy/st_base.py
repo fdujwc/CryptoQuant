@@ -1,7 +1,7 @@
 """
 基础策略，所有策略都继承自此策略
 """
-from src.helpers import log_i, log_e, log_w
+from src.helpers import log
 
 
 class st_base():
@@ -42,16 +42,16 @@ class st_base():
         self.__exit()
 
     def __run(self):
-        log_i(f"[{self.name}] 开始运行")
+        log.i(f"[{self.name}] 开始运行")
 
     def __pause(self):
-        log_i(f"[{self.name}] 暂停运行")
+        log.i(f"[{self.name}] 暂停运行")
 
     def __wake(self):
-        log_i(f"[{self.name}] 继续运行")
+        log.i(f"[{self.name}] 继续运行")
 
     def __exit(self):
-        log_i(f"[{self.name}] 停止运行")
+        log.i(f"[{self.name}] 停止运行")
 
     def __set_status(self, status_code):
         if status_code == "READY":
