@@ -13,6 +13,7 @@ class st_test(st_base):
         self.test_exchange = exchange("huobi")
 
     def __run(self):
+        print(2)
         log.i(f"[{self.name}] 开始运行")
         self.test_exchange.test()
 

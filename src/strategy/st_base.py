@@ -42,6 +42,7 @@ class st_base():
         self.__exit()
 
     def __run(self):
+        print(1)
         log.i(f"[{self.name}] 开始运行")
 
     def __pause(self):
