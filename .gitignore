@@ -1,2 +1,5 @@
 .idea
-*/__pycache__
+/src/exchange/__pycache__/
+/src/helpers/__pycache__/
+/src/manager/__pycache__/
+/src/strategy/__pycache__/
