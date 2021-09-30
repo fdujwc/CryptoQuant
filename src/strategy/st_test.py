@@ -3,17 +3,18 @@
 """
 from .st_base import st_base
 from src.helpers import log
-from src.exchange import huobi
+from src.exchange import exchange
 
 
 class st_test(st_base):
     def __init__(self):
         super().__init__()
         self.name = "测试策略"
+        self.test_exchange = exchange("huobi")
 
     def __run(self):
         log.i(f"[{self.name}] 开始运行")
-        huobi.test()
+        self.test_exchange.test()
 
     def __pause(self):
         log.i(f"[{self.name}] 暂停运行")

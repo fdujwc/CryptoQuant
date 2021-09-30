@@ -1,8 +1,7 @@
 """
 exchange test
 """
-from src.exchange import huobi
 
 
-def test():
-    huobi.test()
+def test(exchange_module):
+    exchange_module.test()
