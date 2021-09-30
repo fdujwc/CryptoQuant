@@ -24,12 +24,21 @@ class log_class:
     def i(self, msg):
         self.__log(self.INFO_MARKER, msg)
 
-    def e(self, msg, exception):
-        msg = f"{msg}: {str(exception)}"
+    def e(self, msg, exception=None):
+        if exception is not None:
+            msg = f"{msg}: {str(exception)}"
         self.__log(self.ERROR_MARKER, msg)
 
     def w(self, msg):
         self.__log(self.WARNING_MARKER, msg)
+
+    def write_to_file(self):
+        """
+        log类方法如果要把输出重定向到文件，不能使用file_io中的写文件函数，因为会造成循环引用
+        所以这里给log类单独实现一个简化版
+        :return:
+        """
+        pass
 
 
 log = log_class()
