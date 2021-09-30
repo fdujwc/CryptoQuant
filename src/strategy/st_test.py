@@ -12,16 +12,15 @@ class st_test(st_base):
         self.name = "测试策略"
         self.test_exchange = exchange("huobi")
 
-    def __run(self):
-        print(2)
-        log.i(f"[{self.name}] 开始运行")
+    def run(self):
+        super().run()
         self.test_exchange.test()
 
-    def __pause(self):
-        log.i(f"[{self.name}] 暂停运行")
+    def pause(self):
+        super().pause()
 
-    def __wake(self):
-        log.i(f"[{self.name}] 继续运行")
+    def wake(self):
+        super().wake()
 
-    def __exit(self):
-        log.i(f"[{self.name}] 停止运行")
+    def exit(self):
+        super().exit()
